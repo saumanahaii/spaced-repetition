@@ -1,0 +1,76 @@
+out: css.css
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Raleway');
+
+@lightColor: lightgreen;
+@border: 5px solid @lightColor;
+@margin: 5px;
+
+@titleFont: 'Montserrat Alternates', sans-serif;
+@bodyFont:  'Raleway', sans-serif;
+
+html,body{
+  height: 100%;
+}
+
+body {
+  background: black;
+  color: @lightColor;
+  font-family: @bodyFont;
+}
+
+h1{
+  font-family: @titleFont;
+}
+
+.header {
+  border-bottom: @border;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.header h1 {
+  margin: @margin;
+}
+
+
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deckEntry{
+  border: @border;
+  margin: @margin;
+  max-width: 400px;
+}
+
+.card {
+  width: 600px;
+  height: 400px;
+  border: @border;
+  margin: @margin*2;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background: black;
+  border: @border;
+  color: @lightColor;
+  margin: @margin;
+}
+
+canvas{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: -1;
+}
