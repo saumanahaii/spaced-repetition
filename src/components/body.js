@@ -10,20 +10,26 @@ export class Body extends Component{
 
     let body;
     let card = (<Card />);
-    if(Object.keys(this.props.activeDeck).length===0){
-      if(Object.keys(this.props.user).length===0){
-        console.log("displaying the login message")
-        body = (<h2>Log into your account.</h2>)
-      }else{
-        console.log("display defaultDecksList")
-        body = (<div className="deckListHolder"><UserDecksList />
-                  <DefaultDecksList />
-                </div>);
-      }
+    if(!this.props.loading){
+      if(Object.keys(this.props.activeDeck).length===0){
+        if(Object.keys(this.props.user).length===0){
+          console.log("displaying the login message")
+          body = (<h2>Log into your account.</h2>)
+        }else{
+          console.log("display defaultDecksList")
+          body = (<div className="deckListHolder">
+                    <UserDecksList />
+                    <DefaultDecksList />
+                  </div>);
+        }
 
+      }else{
+        console.log("in the card display area.")
+        body = card;
+      }
     }else{
-      console.log("in the card display area.")
-      body = card;
+      //loading
+      body=(<h1>...Loading...</h1>)
     }
     return (
       <div className="body">
@@ -35,7 +41,8 @@ export class Body extends Component{
 
 export const mapStateToProps = state => ({
   activeDeck : state.activeDeck,
-  user: state.user
+  user: state.user,
+  loading: state.loading
 })
 
 export default connect(mapStateToProps)(Body);

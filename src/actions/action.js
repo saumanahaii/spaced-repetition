@@ -6,6 +6,12 @@ export const setUser = (user) =>({
   user
 });
 
+export const SET_LOADING = "SET_USER";
+export const setLoading = (loading) =>({
+  type: SET_USER,
+  loading
+});
+
 export const SET_CURRENT_DECK = "SET_CURRENT_DECK";
 export const setCurrentDeck = (deck, currentDeckIndex) =>({
   type:SET_CURRENT_DECK,
@@ -33,6 +39,7 @@ export const setUserDecks = (decks) =>({
 export const getDefaultDecksAsync = () => dispatch => {
   return firebase.database().ref('/decks/').once('value').then(function(snapshot) {
     dispatch(getDefaultDecks(snapshot.val()))
+
 });
 }
 
@@ -51,6 +58,7 @@ export const getUserDecksAsync = (uId) => dispatch => {
 
 export const setActiveDeckAsync = (deckId,uId) => dispatch => {
   //get the deck, then store it in the activeDeck place
+
   fetch('https://us-central1-emojinal-485b9.cloudfunctions.net/getspecificUserDeck',{
     method: 'POST',
     body: JSON.stringify({
@@ -63,6 +71,7 @@ export const setActiveDeckAsync = (deckId,uId) => dispatch => {
     console.log(deck);
     console.log("...User's decks are ", deck)
     //dispatch(setUserDecks(decks))
+    //dispatch(setLoading(false));
     dispatch(setCurrentDeck(deck, deckId))
   })
 
@@ -70,6 +79,8 @@ export const setActiveDeckAsync = (deckId,uId) => dispatch => {
 
 export const chooseDefaultDeck = (deckId, uId) => dispatch => {
   console.log("hit the chooseDefaultDeck")
+  //first things first, lets set loading.
+  dispatch(setLoading(true));
   fetch('https://us-central1-emojinal-485b9.cloudfunctions.net/deckInit',{
     method: 'POST',
     type: 'cors',
@@ -78,6 +89,7 @@ export const chooseDefaultDeck = (deckId, uId) => dispatch => {
       deckId: deckId
     })
   }).then(()=>{
+    dispatch(setLoading(false));
     console.log("................");
     dispatch(getUserDecksAsync(uId))
   })
