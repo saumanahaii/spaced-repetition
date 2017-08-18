@@ -1,12 +1,13 @@
-import {SET_USER, GET_DEFAULT_DECKS} from '../actions/action';
+import {SET_USER, GET_DEFAULT_DECKS, SET_USER_DECKS, SET_CURRENT_DECK} from '../actions/action';
 
 const initialState = {
   user: {},
-  decks: [],
+  defaultDecks: [],
+  userDecks: [],
   activeDeck: {}
 }
 
-export default function reduxer(state = initialState, action){
+export default function reducer(state = initialState, action){
   //console.log(action)
   switch(action.type){
     case SET_USER:
@@ -15,7 +16,14 @@ export default function reduxer(state = initialState, action){
     case GET_DEFAULT_DECKS:
       //console.log("Getting the default deck!");
       //console.log(action)
-      return {...state, decks : action.decks}
+      return {...state, defaultDecks : action.decks}
+    case SET_USER_DECKS:
+      //console.log("Getting the default deck!");
+      //console.log(action)
+      return {...state, userDecks : action.decks}
+    case SET_CURRENT_DECK:
+      //console.log("setting user!");
+      return {...state, activeDeck: action.deck,currentDeckIndex: action.currentDeckIndex};
 
     default:
       // console.log("not in the list...")

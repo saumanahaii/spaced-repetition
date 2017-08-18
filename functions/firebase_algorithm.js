@@ -189,3 +189,43 @@ let switchStack = (origin, target,deck) =>{
 /** Makes a card given the cardData.
 * @param {object} cardData - The data with which to make a card
 */
+let makeCard = (cardData) => {
+  cardData.child = null;
+  cardData.due = null;
+  cardData.study = false;
+  cardData.currentStack = "now"
+  return cardData;
+}
+
+//Makes a blank deck.
+let makeDeck = () => {
+  //makes a tree/queus structure
+  return {
+    counts: {
+      now: 0,
+      soon: 0,
+      soonish: 0,
+      later: 0,
+      learned: 0,
+      unstaged: 0
+    },
+    scoresOverTime: [
+      {
+        date: Date.now(),
+        learned: 0,
+        toLearn: 0
+      }
+    ],
+    now: null,
+    //two hours
+    soon: null,
+    //same day
+    soonish: null,
+    //three days
+    later: null,
+    //memorized, pop them onto the deck once a month
+    learned: null,
+    //not yet tackled
+    unstaged: null
+  };
+}

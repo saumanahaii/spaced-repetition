@@ -24,9 +24,10 @@ export class Login extends Component{
       // This gives you a Google Access Token. You can use it to access the Google API.
       //var token = result.credential.accessToken;
       var user = result.user;
-      console.log(user)
-      let action = setUser(user);
-      self.props.dispatch(action);
+      //let action = setUser(user);
+
+      //self.props.dispatch(action);
+      self.props.dispatch(setUser(user));
 
       // ...
     }

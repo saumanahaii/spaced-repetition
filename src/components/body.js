@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import Card from './card';
-import DecksList from './decksList';
+import Card from './card';
+import DefaultDecksList from './defaultDecksList';
+import UserDecksList from './userDecksList';
 
 export class Body extends Component{
-
-  fbTest = () => {
-    fetch('https://us-central1-emojinal-485b9.cloudfunctions.net/makeDeck').then(response=>{
-      console.log(response);
-    })
-  }
-
   render(){
+    console.log((<UserDecksList />))
+
     let body;
-    let card = (<card />);
+    let card = (<Card />);
     if(Object.keys(this.props.activeDeck).length===0){
       if(Object.keys(this.props.user).length===0){
-        body = (<p>Log into your account.</p>)
+        console.log("displaying the login message")
+        body = (<h2>Log into your account.</h2>)
       }else{
-        body = (<DecksList />);
+        console.log("display defaultDecksList")
+        body = (<div className="deckListHolder"><UserDecksList />
+                  <DefaultDecksList />
+                </div>);
       }
 
     }else{
+      console.log("in the card display area.")
       body = card;
     }
-
     return (
       <div className="body">
         {body}
-        <button onClick={()=>this.fbTest()}>Testing Firebase stuff...</button>
       </div>
     )
   }
