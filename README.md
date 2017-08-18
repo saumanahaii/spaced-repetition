@@ -3,7 +3,7 @@
 ![Image of the Emojinal spaced repetition app](http://i.imgur.com/pXp7dtr.png)
 
 ## What is it?
-A spaced repetition app powered by Mongo, React/Redux and Firebase.  It is a serverless application that runs its server code through Firebase Functions and its database through Firebase's real-time database.
+A spaced repetition app powered by Mongo, React/Redux and Firebase.  It is a serverless application that runs its server code through Firebase Functions and its database through Firebase's real-time database.  You can see it deployed [here](http://undertaker-maneuvers-32863.bitballoon.com/)!
 
 ## How to use it?
 Sign in using the button at the top, then select a deck from the list of default decks.  Right now there is only one.  Once you click it, your user gets a copy of the deck stored in the database.  Select it to set it as the active deck, then answer the questions as they come.  
